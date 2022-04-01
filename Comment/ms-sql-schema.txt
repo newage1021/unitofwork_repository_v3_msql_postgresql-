@@ -1,0 +1,89 @@
+﻿USE [testdb]
+GO
+
+/****** Object:  Table [dbo].[sql_img]    Script Date: 2022/4/1 下午 02:57:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[sql_img](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [nvarchar](10) NULL,
+	[attachment] [varbinary](max) NULL,
+ CONSTRAINT [PK_sql_img] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [TAIPEI_GROUP]
+) ON [TAIPEI_GROUP] TEXTIMAGE_ON [TAIPEI_GROUP]
+GO
+
+USE [testdb]
+GO
+
+/****** Object:  Table [dbo].[products]    Script Date: 2022/3/31 下午 05:33:27 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[products](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [nvarchar](10) NULL,
+	[description] [nvarchar](50) NULL,
+	[barcode] [nvarchar](max) NULL,
+	[rate] [decimal](18, 2) NULL,
+	[addedOn] [datetime] NULL,
+	[modifiedOn] [datetime] NULL,
+ CONSTRAINT [PK_product] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [TAIPEI_GROUP]
+) ON [TAIPEI_GROUP] TEXTIMAGE_ON [TAIPEI_GROUP]
+GO
+
+
+USE [testdb]
+GO
+
+/****** Object:  Table [dbo].[img_master]    Script Date: 2022/4/1 下午 02:58:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[img_master](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [nvarchar](50) NULL,
+ CONSTRAINT [PK_img_master] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [TAIPEI_GROUP]
+) ON [TAIPEI_GROUP]
+GO
+
+
+USE [testdb]
+GO
+
+/****** Object:  Table [dbo].[img_detail]    Script Date: 2022/4/1 下午 02:58:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[img_detail](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[master_id] [int] NULL,
+	[img] [varbinary](max) NULL,
+ CONSTRAINT [PK_img_detail] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [TAIPEI_GROUP]
+) ON [TAIPEI_GROUP] TEXTIMAGE_ON [TAIPEI_GROUP]
+GO
+

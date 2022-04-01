@@ -1,0 +1,40 @@
+﻿0 . 1 整體 unitOfWork 與 Repository 機制(增加新 Controller 存取 DB Table 步驟)
+  step 1 constructor 參數接收 IUnitOfWork
+  step 2 建立 IDBTableRepository 與 DBTableRepository 檔案
+  step 3 建立 DB Table Class 繼承至 MyEntity
+
+0 . 2 利用 unitOfWork 使用 transaction 時必須遵守
+  先執行 unitOfWork.BeginTransaction();
+  再進行 CRUD
+  最後再 unitOfWork.Save();
+
+1 . 在 Controller 裡的 method 預設會出現在 swagger 的 UI，
+(https://localhost:7165/swagger/index.html)
+如果是功能性而 Action 的 function，會導致 swagger UI 出錯，
+解決方式為在 method 上加入此 attribute 即可。
+    [ApiExplorerSettings(IgnoreApi = true)]
+
+2 . 讀取 appsettings.json 設定值
+    "Thumbnail-Width" : 20,
+    "Thumbnail-Height" : 20
+
+        this._thumbnailWidth = this._configuration.GetValue<int>("Thumbnail-Width", 20);
+        this._thumbnailHeight = this._configuration.GetValue<int>("Thumbnail-Height", 20);
+
+2 . 1 讀取 appsettings.json section 設定值      
+  "Image" : {
+    "Thumbnail-Width" : 20,
+    "Thumbnail-Height" : 20
+  }
+
+    方法 1
+        this._thumbnailWidth = this._configuration.GetSection("Image").GetValue<int>("Thumbnail-Width", 20);
+        this._thumbnailHeight = this._configuration.GetSection("Image").GetValue<int>("Thumbnail-Height", 20);
+    方法 2
+        this._thumbnailWidth = this._configuration.GetValue<int>("Image:Thumbnail-Width", 20);
+        this._thumbnailHeight = this._configuration.GetValue<int>("Image:Thumbnail-Height", 20);
+
+3 . 取得目前日期時間
+  System.DateTime.Now.ToString("yyyyMMdd hhmmss:ffffff")
+
+
